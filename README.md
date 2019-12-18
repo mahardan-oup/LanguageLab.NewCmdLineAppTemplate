@@ -1,2 +1,2 @@
 # LanguageLab.NewCmdLineAppTemplate
-Template project for a new command line app project
+Skeleton project for all CmdLine app templates

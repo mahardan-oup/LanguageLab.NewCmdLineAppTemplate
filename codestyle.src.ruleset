@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Custom Ruleset" Description="Custom Ruleset" ToolsVersion="14.0">
+    <Rules AnalyzerId="AsyncUsageAnalyzers" RuleNamespace="AsyncUsageAnalyzers">
+        <Rule Id="UseConfigureAwait" Action="Warning" />
+    </Rules>
+    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
+        <Rule Id="CA1822" Action="None" />   <!-- Mark members as static -->
+        <Rule Id="CA1303" Action="None"/>   <!-- Don't use magic strings. Use resource table instead -->
+    </Rules>
+    <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+        <Rule Id="SA1633" Action="None" />  <!-- File headers required -->
+        <Rule Id="SA1101" Action="None" />   <!-- Prefix local calls with this -->
+        <Rule Id="SA1514" Action="Warning" />   <!-- Separate documentation  with blank line -->
+        <Rule Id="SA1516" Action="Warning" />   <!-- Separate elements with blank line -->
+        <Rule Id="SA1602" Action="Warning" /> <!-- Enumeration items must be documented -->
+        <Rule Id="CS1591" Action="Warning" /> <!-- Document all public types or members -->
+        <Rule Id="SA1652" Action="Warning" /> <!-- XML Documentation  required -->
+        <Rule Id="SA1600" Action="Warning" /> <!-- Elements must be documented -->
+        <Rule Id="SA1629" Action="None" /> <!-- Documentation text should end with a period -->
+    </Rules>
+</RuleSet>
