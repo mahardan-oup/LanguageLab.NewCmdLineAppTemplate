@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish final exe",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c:Release",
+                "-r:win-x64",
+                "-o:${workspaceFolder}/finalexe",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "/property:PublishTrimmed=true",
+                "/property:PublishReadyToRun=true",
+                "/property:PublishSingleFile=true",
+                "/property:PublishReadyToRunShowWarnings=true",
+            ],
+            "problemMatcher": "$msCompile"
+        },
+
+    ]
+}
