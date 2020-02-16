@@ -9,7 +9,7 @@ Setting up nuget
 Create an access token on github for the package repository.
 <!-- https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line#creating-a-token -->
 
-Copy the ClearTextPassword and add it and your user name to the command below to create an entry for the github package repo in your global nuget.config file - C:\Users\maharryd\AppData\Roaming\NuGet
+Copy the ClearTextPassword and add it and your user name to the command below to create an entry for the github package repo in your global nuget.config file - C:\Users\USERNAME\AppData\Roaming\NuGet
 
 nuget sources add -name "github" -Source https://nuget.pkg.github.com/<account>/index.json -Username <user> -Password <PAT>
 
