@@ -7,6 +7,7 @@ namespace LanguageLab.NewCmdLineApp
 
     /// <summary>
     /// The class builds the command-line options for each utility.
+    /// See https://github.com/dotnet/command-line-api/wiki on how to work with the new System.CommandLine
     /// </summary>
     internal class CommandLineBuilder
     {
