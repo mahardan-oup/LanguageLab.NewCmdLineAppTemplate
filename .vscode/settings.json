@@ -1,0 +1,5 @@
+{
+    "dotnet-test-explorer.testProjectPath": "tests/LanguageLab.NewCmdLineApp.Tests/LanguageLab.NewCmdLineApp.Tests.csproj",
+    "dotnet-test-explorer.useTreeView": true,
+    "dotnet-test-explorer.autoExpandTree":false
+}

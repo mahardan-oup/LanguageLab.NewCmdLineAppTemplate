@@ -7,35 +7,14 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineApp.Tests/LanguageLab.NewCmdLineApp.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },            
             "problemMatcher": "$msCompile"
         },
         {
@@ -47,14 +26,54 @@
                 "-c:Release",
                 "-r:win-x64",
                 "-o:${workspaceFolder}/finalexe",
-                "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/LanguageLab.NewCmdLineAppTemplate.csproj",
+                "${workspaceFolder}/src/LanguageLab.NewCmdLineApp/LanguageLab.NewCmdLineApp.csproj",
                 "/property:PublishTrimmed=true",
                 "/property:PublishReadyToRun=true",
                 "/property:PublishSingleFile=true",
                 "/property:PublishReadyToRunShowWarnings=true",
             ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },        
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/tests/LanguageLab.NewCmdLineApp.Tests/LanguageLab.NewCmdLineApp.Tests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
             "problemMatcher": "$msCompile"
         },
-
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=${workspaceFolder}/coverage/lcov.info",
+                "${workspaceFolder}/tests/LanguageLab.NewCmdLineApp.Tests/LanguageLab.NewCmdLineApp.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "test"
+        },
+        {
+            "label": "test report",
+            "dependsOn": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "c:/users/<USERNAME>/.nuget/packages/reportgenerator/4.5.8/tools/netcoreapp3.0/ReportGenerator.dll",
+                "-reports:${workspaceFolder}/coverage/lcov.info",
+                "-targetdir:${workspaceFolder}/coverage/report"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "test"
+        }
     ]
 }

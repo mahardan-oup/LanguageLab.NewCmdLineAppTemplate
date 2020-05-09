@@ -1,21 +1,32 @@
-namespace LanguageLab.NewCmdLineAppTemplate
+namespace LanguageLab.NewCmdLineApp
 {
     using System.CommandLine;
-    using System.CommandLine.Builder;
     using System.CommandLine.Invocation;
     using System.IO;
-    using LanguageLab.NewCmdLineAppTemplate.CommandHandlers;
+    using LanguageLab.NewCmdLineApp.CommandHandlers;
 
     /// <summary>
     /// The class builds the command-line options for each utility.
     /// </summary>
     internal class CommandLineBuilder
     {
-        private Option fOption = new Option(new string[] { "-f", "--sourceFile" }, "Source file") { Argument = new Argument<FileInfo>() { Arity = ArgumentArity.ExactlyOne }.ExistingOnly() };
+        private Option fOption = 
+            new Option(
+                new string[] { "-f", "--sourceFile" }, 
+                "Source file") 
+                { Argument = new Argument<FileInfo>() { Arity = ArgumentArity.ExactlyOne }.ExistingOnly() };
 
-        private Option xsOption = new Option(new string[] { "-xs", "--excludeSuppressed" }, "Exclude suppressed elements") { Argument = new Argument<bool>(defaultValue: () => false) };
+        private Option xsOption = 
+            new Option<bool>(
+                new string[] { "-xs", "--excludeSuppressed" }, 
+                getDefaultValue: () => false,
+                "Exclude suppressed elements");
 
-        private Option xoOption = new Option(new string[] { "-xo", "--excludeOnline" }, "Exclude online elements") { Argument = new Argument<bool>(defaultValue: () => false) };
+        private Option xoOption = 
+            new Option<bool>(
+                new string[] { "-xo", "--excludeOnline" }, 
+                getDefaultValue: () => false,
+                "Exclude online elements");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandLineBuilder" /> class.
@@ -37,7 +48,7 @@ namespace LanguageLab.NewCmdLineAppTemplate
 
         private Command BuildSubCommand()
         {
-            var subCommand = new Command("sub", "Describe your command here");
+            var subCommand = new Command("sub", "Describe your subcommand here");
             subCommand.AddOption(fOption);
             subCommand.AddOption(xsOption);
             subCommand.AddOption(xoOption);

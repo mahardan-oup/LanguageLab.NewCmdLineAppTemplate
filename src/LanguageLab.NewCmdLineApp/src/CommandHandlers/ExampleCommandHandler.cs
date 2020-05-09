@@ -1,4 +1,4 @@
-namespace LanguageLab.NewCmdLineAppTemplate.CommandHandlers
+namespace LanguageLab.NewCmdLineApp.CommandHandlers
 {
     using System;
     using System.IO;

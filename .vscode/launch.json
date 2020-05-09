@@ -10,11 +10,11 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate/bin/Debug/netcoreapp3.1/LanguageLab.NewCmdLineAppTemplate.dll",
+            "program": "${workspaceFolder}/src/LanguageLab.NewCmdLineApp/bin/Debug/netcoreapp3.1/LanguageLab.NewCmdLineApp.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/LanguageLab.NewCmdLineAppTemplate",
+            "cwd": "${workspaceFolder}/src/LanguageLab.NewCmdLineApp",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {

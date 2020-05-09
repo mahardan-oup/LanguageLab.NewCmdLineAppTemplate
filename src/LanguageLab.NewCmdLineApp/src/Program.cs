@@ -1,6 +1,6 @@
-﻿namespace LanguageLab.NewCmdLineAppTemplate
+﻿namespace LanguageLab.NewCmdLineApp
 {
-    using System.CommandLine.Invocation;
+    using System.CommandLine;
 
     /// <summary>
     /// A sample command line program
@@ -12,11 +12,11 @@
         /// </summary>
         /// <param name="args">Command line arguments for the program</param>
         /// <returns>Reports, usually</returns>
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
             var cmdBuilder = new CommandLineBuilder();
             var rootCommand = cmdBuilder.GetRootCommand();
-            return rootCommand.InvokeAsync(args).Result;
+            rootCommand.InvokeAsync(args).Wait();
         }
     }
 }
