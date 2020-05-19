@@ -11,21 +11,21 @@ namespace LanguageLab.NewCmdLineApp
     /// </summary>
     internal class CommandLineBuilder
     {
-        private Option fOption = 
+        private Option fOption =
             new Option(
-                new string[] { "-f", "--sourceFile" }, 
-                "Source file") 
+                new string[] { "-f", "--sourceFile" },
+                "Source file")
                 { Argument = new Argument<FileInfo>() { Arity = ArgumentArity.ExactlyOne }.ExistingOnly() };
 
-        private Option xsOption = 
+        private Option xsOption =
             new Option<bool>(
-                new string[] { "-xs", "--excludeSuppressed" }, 
+                new string[] { "-xs", "--excludeSuppressed" },
                 getDefaultValue: () => false,
                 "Exclude suppressed elements");
 
-        private Option xoOption = 
+        private Option xoOption =
             new Option<bool>(
-                new string[] { "-xo", "--excludeOnline" }, 
+                new string[] { "-xo", "--excludeOnline" },
                 getDefaultValue: () => false,
                 "Exclude online elements");
 

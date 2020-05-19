@@ -6,7 +6,7 @@ If you are looking to create a class library project, please use [LanguageLab.Ne
 This template has the features listed below. 
 
 ## Projects
-- LanguageLab.NewCmdLineApp is a C# 8.0, .NET Standard 2.1 command line application project
+- LanguageLab.NewCmdLineApp is a C# 8.0, .NET Core 3.1 command line application project
 - LanguageLab.NewCmdLineApp.Tests is a C# 8.0, .NET Core 3.1, xUnit test project, targetting NewCmdLineApp
 
 ## Documentation
