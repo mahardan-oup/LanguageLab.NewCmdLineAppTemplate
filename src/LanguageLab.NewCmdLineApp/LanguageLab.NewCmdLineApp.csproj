@@ -10,11 +10,13 @@
     <IsTestProject>false</IsTestProject>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
+    <AssemblyName>NewCmdLineApp</AssemblyName>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1" PrivateAssets="All" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"  PrivateAssets="All" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20253.1" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20371.2" />
   </ItemGroup>
 </Project>
