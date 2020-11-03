@@ -12,10 +12,22 @@ namespace LanguageLab.NewCmdLineApp
     internal class CommandLineBuilder
     {
         private Option fOption =
-            new Option(
+            new Option<FileInfo>(
                 new string[] { "-f", "--sourceFile" },
                 "Source file")
-                { Argument = new Argument<FileInfo>() { Arity = ArgumentArity.ExactlyOne }.ExistingOnly() };
+            { IsRequired = true }.ExistingOnly();
+
+        private Option dOption =
+            new Option<DirectoryInfo>(
+                new string[] { "-d", "--sourceDirectory" },
+                "Source directory")
+            { IsRequired = true }.ExistingOnly();
+
+        private Option oOption =
+            new Option<OutputType>(
+                new string[] { "-o", "--outputType" },
+                getDefaultValue: () => OutputType.Xlsx,
+                "Sets the type of file output by the script. Options are xls, csv, txt.");
 
         private Option xsOption =
             new Option<bool>(
@@ -51,12 +63,14 @@ namespace LanguageLab.NewCmdLineApp
         {
             var subCommand = new Command("sub", "Describe your subcommand here");
             subCommand.AddOption(fOption);
+            subCommand.AddOption(dOption);
             subCommand.AddOption(xsOption);
             subCommand.AddOption(xoOption);
+            subCommand.AddOption(oOption);
 
-            subCommand.Handler = CommandHandler.Create<FileInfo, bool, bool>((sourceFile, excludeSuppressed, excludeOnline) =>
+            subCommand.Handler = CommandHandler.Create<FileInfo, DirectoryInfo, bool, bool, OutputType>((sourceFile, sourceDirectory, excludeSuppressed, excludeOnline, outputType) =>
             {
-                ExampleCommandHandler ech = new ExampleCommandHandler(sourceFile, excludeSuppressed, excludeOnline);
+                ExampleCommandHandler ech = new ExampleCommandHandler(sourceFile, sourceDirectory, excludeSuppressed, excludeOnline, outputType);
                 ech.Go();
             });
 
