@@ -1,4 +1,4 @@
-namespace LanguageLab.NewCmdLineApp
+namespace LanguageLab.NewCmdLineApp.Common
 {
     /// <summary>
     /// Enum for the different file types a command can produce

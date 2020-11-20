@@ -1,9 +1,11 @@
 namespace LanguageLab.NewCmdLineApp
 {
+    using System;
     using System.CommandLine;
     using System.CommandLine.Invocation;
     using System.IO;
     using LanguageLab.NewCmdLineApp.CommandHandlers;
+    using LanguageLab.NewCmdLineApp.Common;
 
     /// <summary>
     /// The class builds the command-line options for each utility.
@@ -23,23 +25,29 @@ namespace LanguageLab.NewCmdLineApp
                 "Source directory")
             { IsRequired = true }.ExistingOnly();
 
+        private Option tdOption =
+            new Option<DirectoryInfo>(
+                new string[] { "-td", "--targetDirectory" },
+                getDefaultValue: () => new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)),
+                "Target directory for new files.").ExistingOnly();
+
+        private Option allChildDirectoriesOption =
+            new Option<bool>(
+                new string[] { "-acd", "--allChildDirectories" },
+                getDefaultValue: () => false,
+                "Add this flag to process all files in directory specified with -d AND all its child directories.");
+
         private Option oOption =
             new Option<OutputType>(
                 new string[] { "-o", "--outputType" },
                 getDefaultValue: () => OutputType.Xlsx,
-                "Sets the type of file output by the script. Options are xls, csv, txt.");
+                "Sets the type of file output by the script. Options are xlsx, csv, txt.");
 
-        private Option xsOption =
-            new Option<bool>(
-                new string[] { "-xs", "--excludeSuppressed" },
-                getDefaultValue: () => false,
-                "Exclude suppressed elements");
-
-        private Option xoOption =
-            new Option<bool>(
-                new string[] { "-xo", "--excludeOnline" },
-                getDefaultValue: () => false,
-                "Exclude online elements");
+        private Option fpOption =
+            new Option<string>(
+                new string[] { "-fp", "--filePattern" },
+                getDefaultValue: () => "*.txt",
+                "File pattern for files to use within source directory. Default is *.txt");
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandLineBuilder" /> class.
@@ -64,13 +72,14 @@ namespace LanguageLab.NewCmdLineApp
             var subCommand = new Command("sub", "Describe your subcommand here");
             subCommand.AddOption(fOption);
             subCommand.AddOption(dOption);
-            subCommand.AddOption(xsOption);
-            subCommand.AddOption(xoOption);
+            subCommand.AddOption(tdOption);
+            subCommand.AddOption(fpOption);
             subCommand.AddOption(oOption);
+            subCommand.AddOption(allChildDirectoriesOption);
 
-            subCommand.Handler = CommandHandler.Create<FileInfo, DirectoryInfo, bool, bool, OutputType>((sourceFile, sourceDirectory, excludeSuppressed, excludeOnline, outputType) =>
+            subCommand.Handler = CommandHandler.Create<FileInfo, CoreOptions>((sourceFile, coreOptions) =>
             {
-                ExampleCommandHandler ech = new ExampleCommandHandler(sourceFile, sourceDirectory, excludeSuppressed, excludeOnline, outputType);
+                ExampleCommandHandler ech = new ExampleCommandHandler(sourceFile, coreOptions);
                 ech.Go();
             });
 
