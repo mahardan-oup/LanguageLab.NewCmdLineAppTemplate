@@ -18,6 +18,7 @@ You'll need to change those to match your project name.
   - tests\LanguageLab.NewCmdLineApp.Tests.csproj
   - LanguageLab.NewCmdLineApp.sln
   - NewCmdLineApp.cmd
+- Open the src\*.csproj file and change the name of the exe to be build from NewCmdLineApp
 
 ## Restore packages and test tasks
 - Restore all nuget packages to the project with `dotnet restore`.
@@ -30,7 +31,7 @@ You'll need to change those to match your project name.
 - Open a terminal window at the project root directory
 - Run `NewCmdLineApp.cmd /?` (whatever you named it) to see the list of options and the subcommand list
 - Run `NewCmdLineApp.cmd sub /?` (whatever you named it) to see the list of options for the subcommand
-- Run  `NewCmdLineApp.cmd sub -f readme.md` (whatever you named it) to run the subcommand
+- Run  `NewCmdLineApp.cmd sub -f readme.md -d .` (whatever you named it) to run the subcommand
 
 ## Optional : Enable code coverage
 Test coverage is enabled with 
