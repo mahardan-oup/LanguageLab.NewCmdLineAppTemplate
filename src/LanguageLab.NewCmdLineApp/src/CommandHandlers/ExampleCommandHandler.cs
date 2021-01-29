@@ -40,17 +40,5 @@ namespace LanguageLab.NewCmdLineApp.CommandHandlers
             Console.WriteLine($"Source file {SourceFile.Name} exist? {SourceFile.Exists}");
             return SourceFile.Exists;
         }
-
-        private bool Initialize()
-        {
-            Console.WriteLine($"Search pattern : {FilePattern}");
-            Console.WriteLine($"Check child directories : {CheckChildDirectories}");
-            var sourceFiles = SourceDirectory.EnumerateFiles(FilePattern, CheckChildDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
-            Console.WriteLine($"Source Directory : {SourceDirectory.FullName}, {sourceFiles.Count()} files");
-            Console.WriteLine($"Target Directory : {TargetDirectory.FullName}");
-            Console.WriteLine($"Output file type : {FileTypeToReturn}");
-
-            return ValidateNonCoreOptions();
-        }
     }
 }
