@@ -5,6 +5,7 @@
     <Version>1.0.0</Version>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CodeAnalysisRuleSet>..\..\codestyle.src.ruleset</CodeAnalysisRuleSet>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>..\..\docs\xml\LanguageLab.NewCmdLineApp.XML</DocumentationFile>
     <IsTestProject>false</IsTestProject>
@@ -15,8 +16,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.1" PrivateAssets="All" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"  PrivateAssets="All" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20371.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321"  PrivateAssets="All" />
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta1.20574.7" />
+    <PackageReference Include="LanguageLab.Common" Version="1.1.2" />
   </ItemGroup>
 </Project>

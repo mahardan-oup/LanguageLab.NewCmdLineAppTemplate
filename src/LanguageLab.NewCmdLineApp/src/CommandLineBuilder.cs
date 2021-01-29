@@ -13,41 +13,29 @@ namespace LanguageLab.NewCmdLineApp
     /// </summary>
     internal class CommandLineBuilder
     {
-        private Option fOption =
-            new Option<FileInfo>(
-                new string[] { "-f", "--sourceFile" },
-                "Source file")
-            { IsRequired = true }.ExistingOnly();
-
-        private Option dOption =
+        private Option sourceDirectoryOption =
             new Option<DirectoryInfo>(
                 new string[] { "-d", "--sourceDirectory" },
                 "Source directory")
             { IsRequired = true }.ExistingOnly();
 
-        private Option tdOption =
-            new Option<DirectoryInfo>(
-                new string[] { "-td", "--targetDirectory" },
-                getDefaultValue: () => new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)),
-                "Target directory for new files.").ExistingOnly();
-
-        private Option allChildDirectoriesOption =
+        private Option recurseDirectoriesOption =
             new Option<bool>(
-                new string[] { "-acd", "--allChildDirectories" },
+                new string[] { "-r", "--recurseDirectories" },
                 getDefaultValue: () => false,
                 "Add this flag to process all files in directory specified with -d AND all its child directories.");
 
-        private Option oOption =
-            new Option<OutputType>(
+        private Option outputTypeOption =
+            new Option<ReportFileType>(
                 new string[] { "-o", "--outputType" },
-                getDefaultValue: () => OutputType.Xlsx,
+                getDefaultValue: () => ReportFileType.Xlsx,
                 "Sets the type of file output by the script. Options are xlsx, csv, txt.");
 
-        private Option fpOption =
-            new Option<string>(
-                new string[] { "-fp", "--filePattern" },
-                getDefaultValue: () => "*.txt",
-                "File pattern for files to use within source directory. Default is *.txt");
+        private Option targetDirectoryOption =
+            new Option<DirectoryInfo>(
+                new string[] { "-t", "--targetDirectory" },
+                getDefaultValue: () => new DirectoryInfo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)),
+                "Target directory for new files.").ExistingOnly();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandLineBuilder" /> class.
@@ -62,25 +50,52 @@ namespace LanguageLab.NewCmdLineApp
         /// <returns>The <see cref="System.CommandLine.RootCommand" /> object containing the command-line options for this program.</returns>
         internal RootCommand GetRootCommand()
         {
-            var rootCommand = new RootCommand("dpsxml");
-            rootCommand.Add(BuildSubCommand());
+            var rootCommand = new RootCommand("templateCmd");
+            rootCommand.Add(BuildSimpleSubCommand());
+            rootCommand.Add(BuildReportSubCommand());
             return rootCommand;
         }
 
-        private Command BuildSubCommand()
+        private Option FilePatternOption(string pattern)
+        {
+            return new Option<string>(
+                new string[] { "-f", "--file" },
+                getDefaultValue: () => pattern,
+                $"File pattern for files to use within source directory. Default is {pattern}");
+        }
+
+        private void AddCoreReportCommandOptions(Command subCommand, string pattern)
+        {
+            subCommand.AddOption(sourceDirectoryOption);
+            subCommand.AddOption(outputTypeOption);
+            subCommand.AddOption(recurseDirectoriesOption);
+            subCommand.AddOption(FilePatternOption(pattern));
+        }
+
+        private Command BuildSimpleSubCommand()
         {
             var subCommand = new Command("sub", "Describe your subcommand here");
-            subCommand.AddOption(fOption);
-            subCommand.AddOption(dOption);
-            subCommand.AddOption(tdOption);
-            subCommand.AddOption(fpOption);
-            subCommand.AddOption(oOption);
-            subCommand.AddOption(allChildDirectoriesOption);
+            subCommand.AddOption(sourceDirectoryOption);
+            subCommand.AddOption(FilePatternOption("Somefile.txt"));
 
-            subCommand.Handler = CommandHandler.Create<FileInfo, CoreOptions>((sourceFile, coreOptions) =>
+            subCommand.Handler = CommandHandler.Create<DirectoryInfo, string>((sourceDirectory, file) =>
             {
-                ExampleCommandHandler ech = new ExampleCommandHandler(sourceFile, coreOptions);
+                SimpleCommandHandler ech = new SimpleCommandHandler(sourceDirectory, file);
                 ech.Go();
+            });
+
+            return subCommand;
+        }
+
+        private Command BuildReportSubCommand()
+        {
+            var subCommand = new Command("rep", "Describe your report command here");
+            AddCoreReportCommandOptions(subCommand, "*.txt");
+
+            subCommand.Handler = CommandHandler.Create<CoreReportOptions>((coreOptions) =>
+            {
+                SimpleReportHandler srh = new SimpleReportHandler(coreOptions);
+                srh.Go();
             });
 
             return subCommand;

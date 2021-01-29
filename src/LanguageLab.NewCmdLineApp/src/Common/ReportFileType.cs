@@ -1,9 +1,9 @@
 namespace LanguageLab.NewCmdLineApp.Common
 {
     /// <summary>
-    /// Enum for the different file types a command can produce
+    /// Enum for the different report file types
     /// </summary>
-    public enum OutputType
+    public enum ReportFileType
     {
         /// <summary>output type is not specified</summary>
         Unspecified = 0,
