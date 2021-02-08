@@ -19,6 +19,12 @@ namespace LanguageLab.NewCmdLineApp
                 "Source directory")
             { IsRequired = true }.ExistingOnly();
 
+        private Option sourceFileOption =
+            new Option<DirectoryInfo>(
+                new string[] { "-f", "--sourceFile" },
+                "Source file")
+            { IsRequired = true }.ExistingOnly();
+
         private Option recurseDirectoriesOption =
             new Option<bool>(
                 new string[] { "-r", "--recurseDirectories" },
@@ -59,7 +65,7 @@ namespace LanguageLab.NewCmdLineApp
         private Option FilePatternOption(string pattern)
         {
             return new Option<string>(
-                new string[] { "-f", "--file" },
+                new string[] { "--fp", "--filePattern" },
                 getDefaultValue: () => pattern,
                 $"File pattern for files to use within source directory. Default is {pattern}");
         }
