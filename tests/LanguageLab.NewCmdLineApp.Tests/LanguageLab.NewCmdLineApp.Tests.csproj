@@ -16,8 +16,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
     <PackageReference Include="coverlet.msbuild" Version="3.0.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3"/>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.321"/>
-    <PackageReference Include="ReportGenerator" Version="4.8.4"/>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>
+    <PackageReference Include="ReportGenerator" Version="4.8.5"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\LanguageLab.NewCmdLineApp\LanguageLab.NewCmdLineApp.csproj" />

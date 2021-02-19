@@ -66,7 +66,7 @@
             "command": "dotnet",
             "type": "process",
             "args": [
-                "c:/users/<USERNAME>/.nuget/packages/reportgenerator/4.7.1/tools/netcoreapp3.0/ReportGenerator.dll",
+                "c:/users/<USERNAME>/.nuget/packages/reportgenerator/4.8.5/tools/netcoreapp3.0/ReportGenerator.dll",
                 "-reports:${workspaceFolder}/coverage/lcov.info",
                 "-targetdir:${workspaceFolder}/coverage/report"
             ],
