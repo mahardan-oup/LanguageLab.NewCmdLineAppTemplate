@@ -1,4 +1,4 @@
-namespace LanguageLab.NewCmdLineApp.CommandHandlers
+namespace LanguageLab.NewCmdLineApp.CommandHandlers.Example
 {
     using System;
     using System.Collections.Generic;

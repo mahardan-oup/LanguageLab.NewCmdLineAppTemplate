@@ -4,7 +4,7 @@ namespace LanguageLab.NewCmdLineApp
     using System.CommandLine;
     using System.CommandLine.Invocation;
     using System.IO;
-    using LanguageLab.NewCmdLineApp.CommandHandlers;
+    using LanguageLab.NewCmdLineApp.CommandHandlers.Example;
     using LanguageLab.NewCmdLineApp.Common;
 
     /// <summary>
