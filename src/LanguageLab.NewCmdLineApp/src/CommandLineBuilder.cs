@@ -20,7 +20,7 @@ namespace LanguageLab.NewCmdLineApp
             { IsRequired = true }.ExistingOnly();
 
         private Option sourceFileOption =
-            new Option<DirectoryInfo>(
+            new Option<FileInfo>(
                 new string[] { "-f", "--sourceFile" },
                 "Source file")
             { IsRequired = true }.ExistingOnly();
